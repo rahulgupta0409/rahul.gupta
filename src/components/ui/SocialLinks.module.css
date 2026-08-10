@@ -1,0 +1,26 @@
+.list {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  font-size: 1.15rem;
+  transition: color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out),
+    background var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-spring);
+}
+
+.link:hover {
+  color: var(--accent-solid);
+  border-color: var(--accent);
+  background: var(--surface-tint);
+  transform: translateY(-3px);
+}

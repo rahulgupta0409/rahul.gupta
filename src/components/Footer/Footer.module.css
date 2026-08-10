@@ -1,0 +1,89 @@
+.footer {
+  border-top: 1px solid var(--border);
+  background: var(--surface-flush);
+  padding-block: clamp(2.5rem, 5vw, 3.5rem) clamp(1.5rem, 3vw, 2rem);
+}
+
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  padding-bottom: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+.brand {
+  max-width: 320px;
+}
+
+.tagline {
+  margin-top: 0.85rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.navList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.5rem;
+}
+
+.navList a {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.navList a:hover {
+  color: var(--accent-solid);
+}
+
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: clamp(1.5rem, 3vw, 2rem);
+  border-top: 1px solid var(--border);
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+}
+
+.toTop {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  padding: 0.5rem 0.9rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border);
+  transition: color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-spring);
+}
+
+.toTop svg {
+  transition: transform var(--dur-fast) var(--ease-spring);
+}
+
+.toTop:hover {
+  color: var(--accent-solid);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.toTop:hover svg {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 640px) {
+  .bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

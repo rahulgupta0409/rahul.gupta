@@ -1,0 +1,35 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-display);
+  border-radius: var(--radius-sm);
+}
+
+.mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: var(--accent-solid);
+  line-height: 1;
+  transition: transform var(--dur-fast) var(--ease-spring);
+}
+
+.logo:hover .mark {
+  transform: translateY(-2px) rotate(-4deg);
+}
+
+.word {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 420px) {
+  .word {
+    font-size: 1.02rem;
+  }
+}

@@ -1,0 +1,141 @@
+.hero {
+  position: relative;
+  padding-top: clamp(2.5rem, 6vw, 4.5rem);
+  padding-bottom: clamp(2.5rem, 6vw, 4rem);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.08fr 0.92fr;
+  align-items: center;
+  gap: clamp(2.5rem, 6vw, 5rem);
+}
+
+.copy {
+  max-width: 560px;
+}
+
+.eyebrow {
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.name {
+  font-size: clamp(2.6rem, 6.4vw, 4.1rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.04;
+  margin-top: 0.3rem;
+}
+
+.role {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2.1vw, 1.4rem);
+  font-weight: 600;
+  color: var(--accent-solid);
+  margin-top: 0.7rem;
+}
+
+.bio {
+  font-size: 1.06rem;
+  color: var(--text-secondary);
+  max-width: 46ch;
+  line-height: 1.7;
+  margin-top: 1.15rem;
+}
+
+.ctas {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.9rem;
+}
+
+.socials {
+  margin-top: 1.9rem;
+}
+
+.scrollCue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin: clamp(2.75rem, 6vw, 4.5rem) auto 0;
+  color: var(--text-tertiary);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.scrollCue svg {
+  font-size: 1.1rem;
+  animation: bob 2.2s ease-in-out infinite;
+}
+
+.scrollCue:hover {
+  color: var(--accent-solid);
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
+
+@media (max-width: 960px) {
+  .grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .copy {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .bio {
+    max-width: 52ch;
+  }
+
+  .ctas,
+  .socials {
+    justify-content: center;
+  }
+
+  .copy > * {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .scrollCue {
+    display: none;
+  }
+
+  .ctas {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ctas > * {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scrollCue svg {
+    animation: none;
+  }
+}

@@ -1,0 +1,143 @@
+.section {
+  padding-block: clamp(3rem, 7vw, 5.5rem);
+  border-top: 1px solid var(--border);
+}
+
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 1.35rem;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: var(--border);
+}
+
+.item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2.75rem minmax(0, 1fr);
+  gap: clamp(1rem, 2.6vw, 1.75rem);
+}
+
+.marker {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  padding-top: 0.4rem;
+}
+
+.dot {
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 50%;
+  background: var(--accent-solid);
+  border: 3px solid var(--bg);
+  box-shadow: 0 0 0 4px rgb(var(--accent-rgb) / 0.18);
+}
+
+.content {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.25rem, 2.6vw, 1.75rem);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--dur-med) var(--ease-spring), box-shadow var(--dur-med) var(--ease-out),
+    border-color var(--dur-med) var(--ease-out);
+}
+
+.content:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: rgb(var(--accent-rgb) / 0.35);
+}
+
+.headRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.role {
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.period {
+  flex-shrink: 0;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--accent-solid);
+  background: var(--surface-tint);
+  padding: 0.28rem 0.65rem;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+
+.company {
+  margin-top: 0.3rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.summary {
+  margin-top: 0.85rem;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+.points {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.9rem;
+}
+
+.points li {
+  position: relative;
+  padding-left: 1.05rem;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.points li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.58em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+@media (max-width: 560px) {
+  .timeline::before {
+    left: 1.05rem;
+  }
+
+  .item {
+    grid-template-columns: 2.1rem minmax(0, 1fr);
+    gap: 0.85rem;
+  }
+
+  .headRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+}

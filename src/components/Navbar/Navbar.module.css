@@ -1,0 +1,198 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  border-bottom: 1px solid transparent;
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  transition: background-color var(--dur-med) var(--ease-out), border-color var(--dur-med) var(--ease-out),
+    box-shadow var(--dur-med) var(--ease-out), backdrop-filter var(--dur-med) var(--ease-out);
+}
+
+.header.scrolled {
+  background: color-mix(in srgb, var(--surface) 78%, transparent);
+  border-bottom-color: var(--border);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.inner {
+  position: relative;
+  z-index: 41;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  min-height: 58px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+@media (max-width: 860px) {
+  .inner {
+    padding-top: 38px;
+  }
+}
+
+/* Only applied when JS has detected an actual Dynamic Island device (see
+   useHasDynamicIsland). Reserves clearance so the island — pinned at
+   env(safe-area-inset-top), ~59pt on those devices — never overlaps the nav
+   links beneath it. Two classes beats the single-class rules above (and the
+   media-query one) on specificity, so this wins on every viewport without
+   needing its own breakpoint override. */
+.inner.withIsland {
+  padding-top: calc(env(safe-area-inset-top, 0px) + 44px);
+}
+
+.nav {
+  display: flex;
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.25rem, 2.4vw, 2.35rem);
+}
+
+.navLink {
+  position: relative;
+  display: inline-block;
+  padding-block: 0.4rem;
+  font-size: 0.96rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent-solid);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-med) var(--ease-spring);
+}
+
+.navLink:hover {
+  color: var(--text-primary);
+}
+
+.navLink.active {
+  color: var(--accent-solid);
+  font-weight: 600;
+}
+
+.navLink.active::after {
+  transform: scaleX(1);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.menuBtn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  font-size: 1.35rem;
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.backdrop {
+  /* Anchored like .mobilePanel below (absolute, relative to the sticky
+     header) rather than position:fixed. .header carries an unconditional
+     `backdrop-filter: blur(0px)` so its scroll-blur can transition smoothly
+     from 0, and any non-none backdrop-filter on an ancestor — even at 0px —
+     makes that ancestor the containing block for fixed descendants. A fixed
+     backdrop here silently collapsed to the header's own ~98px box instead
+     of the viewport, leaving everything below it unreachable to clicks. */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  z-index: 39;
+  background: rgb(8 12 20 / 0.32);
+}
+
+.mobilePanel {
+  /* Anchored to the sticky header (its nearest positioned ancestor) instead
+     of sitting in normal flow, so opening/closing it never changes the
+     header's own box height. A flow-based panel briefly grew the header
+     while open, which threw off scrollToSection's offset math and raced
+     against the collapse animation whenever a link was tapped — the page
+     would start a smooth-scroll toward a target computed against the
+     taller header, then the header would shrink back under it mid-scroll. */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  max-height: 80vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: var(--shadow-lg);
+}
+
+.mobileList {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem var(--container-pad) 0;
+}
+
+.mobileLink {
+  display: block;
+  padding: 0.9rem 0.25rem;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border);
+}
+
+.mobileLink.active {
+  color: var(--accent-solid);
+  font-weight: 600;
+}
+
+.mobileFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem var(--container-pad) 1.35rem;
+}
+
+.mobileFooterLabel {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+@media (max-width: 860px) {
+  .nav {
+    display: none;
+  }
+
+  .desktopOnly {
+    display: none;
+  }
+
+  .menuBtn {
+    display: inline-flex;
+  }
+}

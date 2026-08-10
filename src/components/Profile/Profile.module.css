@@ -1,0 +1,184 @@
+.wrap {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  margin-inline: auto;
+}
+
+.glow {
+  position: absolute;
+  inset: -6% -10%;
+  background: radial-gradient(60% 60% at 68% 28%, rgb(var(--accent-rgb) / 0.32), transparent 70%),
+    radial-gradient(45% 45% at 20% 85%, rgb(var(--accent-rgb) / 0.16), transparent 75%);
+  filter: blur(38px);
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.frame {
+  position: relative;
+  z-index: 1;
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+  background: var(--surface);
+  isolation: isolate;
+}
+
+/* Matches webapp.png: on the two-column desktop layout, the portrait's edges
+   dissolve into the page background instead of ending in a hard, bordered
+   rectangle. Masking the whole frame (not just the <img>s) fades the
+   border/shadow along with the photo, so nothing hard-edged is left behind
+   as it approaches transparent. Two gradients (horizontal, vertical) — each
+   fading in from both ends with the same ease-then-plateau curve — combined
+   with mask-composite:intersect so a corner only stays opaque where BOTH
+   axes are still opaque, giving a soft fade on all four sides at once
+   instead of just left/right or just top/bottom. Scoped to the breakpoint
+   where the frame actually sits beside the copy column (see Hero.module.css's
+   960px grid breakpoint) — stacked/centered on narrower layouts, an edge
+   fade with nothing to blend into would just read as a broken image. */
+@media (min-width: 961px) {
+  .frame {
+    /* box-shadow isn't part of an element's own paint the way background/
+       border/content are, so mask-image never clips it — it kept rendering
+       as a full, hard-edged rounded-rect halo around the original frame
+       bounds no matter how transparent the masked photo/border got. That
+       halo *was* the "still has an outside border" look: the photo dissolved
+       correctly, but a soft rectangular shadow stayed put behind it. Nothing
+       to fade to since the mask is doing that job now. */
+    box-shadow: none;
+    /* White, not black: -webkit-mask's legacy Porter-Duff compositing (what
+       this engine actually runs mask-composite/-webkit-mask-composite
+       through — see the source-in note below) reveals by luminance, not
+       alpha. Black stops have ~0 luminance regardless of their alpha, so
+       "fully opaque" black stops were reading as "mostly hidden," producing
+       a hazy wash instead of a clean dissolve. White has full luminance, so
+       it reveals/hides correctly under either interpretation. */
+    /* Wide, mostly-linear ramp instead of a steep 0-28% ease: a narrow fade
+       band around an otherwise fully-opaque plateau reads as "a blur
+       slapped on the edge of a still-rectangular photo," not a dissolve.
+       Reaching full opacity only at 42% (mirrored at 58%) spreads the
+       transition across most of the frame instead. */
+    --fade-h: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(255, 255, 255, 0.16) 2%,
+      rgba(255, 255, 255, 0.55) 10%,
+      #fff 42%,
+      #fff 58%,
+      rgba(255, 255, 255, 0.55) 76%,
+      rgba(255, 255, 255, 0.16) 90%,
+      transparent 100%
+    );
+    --fade-v: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(255, 255, 255, 0.16) 2%,
+      rgba(255, 255, 255, 0.55) 10%,
+      #fff 42%,
+      #fff 58%,
+      rgba(255, 255, 255, 0.55) 76%,
+      rgba(255, 255, 255, 0.16) 90%,
+      transparent 100%
+    );
+    mask-image: var(--fade-h), var(--fade-v);
+    mask-composite: intersect;
+    -webkit-mask-image: var(--fade-h), var(--fade-v);
+    -webkit-mask-composite: source-in;
+  }
+}
+
+.photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: 50% 18%;
+  opacity: 0;
+  transform: scale(1.5);
+  transition: opacity 1s var(--ease-out), transform 1.1s var(--ease-out);
+  will-change: opacity;
+}
+
+.photo.visible {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 1;
+}
+
+.frameShade {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(180deg, rgba(6, 10, 18, 0) 58%, rgba(6, 10, 18, 0.38) 100%),
+    linear-gradient(0deg, rgba(6, 10, 18, 0.12), rgba(6, 10, 18, 0.12));
+  pointer-events: none;
+}
+
+.badge {
+  position: absolute;
+  left: 1.1rem;
+  bottom: 1.1rem;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.75rem 1.05rem;
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--surface) 78%, transparent);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.badgeDot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  box-shadow: 0 0 0 3px rgb(var(--accent-rgb) / 0.18);
+}
+
+.badgeValue {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.1;
+}
+
+.badgeLabel {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .wrap {
+    max-width: 320px;
+  }
+
+  .badge {
+    left: 0.7rem;
+    bottom: 0.7rem;
+    padding: 0.6rem 0.85rem;
+  }
+
+  .badgeValue {
+    font-size: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo {
+    transform: none;
+  }
+}
