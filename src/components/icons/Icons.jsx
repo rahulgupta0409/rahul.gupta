@@ -152,6 +152,14 @@ export function DatabaseIcon(props) {
   );
 }
 
+export function CloudIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" {...base} {...props}>
+      <path d="M7.5 18.5h9.8a3.7 3.7 0 0 0 .5-7.37 5.3 5.3 0 0 0-10.2-1.9 4.2 4.2 0 0 0-.1 9.27Z" />
+    </svg>
+  );
+}
+
 export function GitBranchIcon(props) {
   return (
     <svg viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" {...base} {...props}>

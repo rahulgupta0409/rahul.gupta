@@ -2,8 +2,8 @@ import { motion } from 'framer-motion';
 import { useTheme } from '../../context/ThemeContext';
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion';
 import { profile, stats } from '../../data/portfolio';
-import dayPhoto from '../../assets/images/profile-day.jpg';
-import nightPhoto from '../../assets/images/profile-night.jpg';
+import dayPhoto from '../../assets/images/profile-day.PNG';
+import nightPhoto from '../../assets/images/profile-night.PNG';
 import styles from './Profile.module.css';
 
 export default function Profile() {

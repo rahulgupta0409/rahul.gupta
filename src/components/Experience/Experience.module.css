@@ -45,6 +45,7 @@
 }
 
 .content {
+  position: relative;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
@@ -85,11 +86,34 @@
   white-space: nowrap;
 }
 
+.companyRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 0.4rem;
+}
+
+.companyLogo {
+  flex-shrink: 0;
+  width: 1.9rem;
+  height: 1.9rem;
+  object-fit: contain;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 0.55rem;
+  padding: 0.25rem;
+  box-shadow: var(--shadow-sm);
+}
+
 .company {
-  margin-top: 0.3rem;
-  font-size: 0.92rem;
+  font-size: 0.86rem;
   font-weight: 600;
   color: var(--text-secondary);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 0.32rem 0.85rem;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-sm);
 }
 
 .summary {
