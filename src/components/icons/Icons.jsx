@@ -241,3 +241,30 @@ export function CompassIcon(props) {
     </svg>
   );
 }
+
+export function CertBadgeIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" {...props}>
+      <defs>
+        <linearGradient id="certBadgeGradient" x1="0" y1="0" x2="0.9" y2="1">
+          <stop offset="0%" stopColor="#FFB74D" />
+          <stop offset="100%" stopColor="#EC7211" />
+        </linearGradient>
+      </defs>
+      <path
+        fill="url(#certBadgeGradient)"
+        stroke="rgba(255,255,255,0.55)"
+        strokeWidth="0.6"
+        d="M12 1.3 20.5 6.15V15.85L12 20.7 3.5 15.85V6.15Z"
+      />
+      <path
+        d="M7.8 12.4 10.4 15 16.2 9.1"
+        fill="none"
+        stroke="#fff"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}

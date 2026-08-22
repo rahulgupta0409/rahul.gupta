@@ -4,6 +4,7 @@ import { experience } from '../../data/portfolio';
 import toyotaLogo from '../../assets/images/toyota-motors-europe.webp';
 import firstGroupLogo from '../../assets/images/first-group-america.png';
 import aerialTelecomLogo from '../../assets/images/aerial-telecom.png';
+import { MapPinIcon } from '../icons/Icons';
 import styles from './Experience.module.css';
 
 const COMPANY_LOGOS = {
@@ -33,6 +34,12 @@ export default function Experience() {
                     <h3 className={styles.role}>{item.role}</h3>
                     <span className={styles.period}>{item.period}</span>
                   </div>
+                  {item.location && (
+                    <p className={styles.location}>
+                      <MapPinIcon aria-hidden="true" />
+                      {item.location}
+                    </p>
+                  )}
                   <div className={styles.companyRow}>
                     {logo && <img src={logo} alt="" className={styles.companyLogo} aria-hidden="true" />}
                     <p className={styles.company}>{item.company}</p>
