@@ -17,6 +17,7 @@ import {
   PhoneIcon,
 } from '../../components/icons/Icons';
 import resumePhoto from '../../assets/images/resume-pic.png';
+import devAssociateLogo from '../../assets/images/developer-associate-logo.png';
 import styles from './Resume.module.css';
 
 const githubUrl = socials.find((s) => s.id === 'github')?.href;
@@ -257,8 +258,13 @@ export default function Resume() {
                 <ul className={styles.certList}>
                   {certifications.map((cert) => (
                     <li key={cert.id}>
-                      {cert.name}
-                      {cert.issuer && <span className={styles.certIssuer}> — {cert.issuer}</span>}
+                      {cert.id === 'aws-dva' && (
+                        <img src={devAssociateLogo} alt="" className={styles.certLogo} />
+                      )}
+                      <span>
+                        {cert.name}
+                        {cert.issuer && <span className={styles.certIssuer}> — {cert.issuer}</span>}
+                      </span>
                     </li>
                   ))}
                 </ul>

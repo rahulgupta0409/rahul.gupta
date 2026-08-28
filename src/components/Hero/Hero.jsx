@@ -3,10 +3,11 @@ import Profile from '../Profile/Profile';
 import Reveal from '../ui/Reveal';
 import Button from '../ui/Button';
 import SocialLinks from '../ui/SocialLinks';
-import { DownloadIcon, ChevronDownIcon, MailIcon, CertBadgeIcon } from '../icons/Icons';
+import { DownloadIcon, ChevronDownIcon, MailIcon } from '../icons/Icons';
 import { profile, certifications } from '../../data/portfolio';
 import { scrollToSection } from '../../utils/scroll';
 import { useTypewriter } from '../../hooks/useTypewriter';
+import devAssociateLogo from '../../assets/images/developer-associate-logo.png';
 import styles from './Hero.module.css';
 
 export default function Hero() {
@@ -41,7 +42,7 @@ export default function Hero() {
 
             {awsCert && (
               <Reveal as="div" className={styles.certBadge} delay={0.18}>
-                <CertBadgeIcon className={styles.certIcon} aria-hidden="true" />
+                <img src={devAssociateLogo} alt="" className={styles.certIcon} />
                 <span>{awsCert.name}</span>
               </Reveal>
             )}
