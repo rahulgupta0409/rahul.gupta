@@ -256,17 +256,32 @@ export default function Resume() {
               <section className={styles.block}>
                 <h2 className={styles.blockTitle}>Certifications</h2>
                 <ul className={styles.certList}>
-                  {certifications.map((cert) => (
-                    <li key={cert.id}>
-                      {cert.id === 'aws-dva' && (
-                        <img src={devAssociateLogo} alt="" className={styles.certLogo} />
-                      )}
+                  {certifications.map((cert) => {
+                    const logo = cert.id === 'aws-dva' && (
+                      <img src={devAssociateLogo} alt="" className={styles.certLogo} />
+                    );
+                    const text = (
                       <span>
                         {cert.name}
                         {cert.issuer && <span className={styles.certIssuer}> — {cert.issuer}</span>}
                       </span>
-                    </li>
-                  ))}
+                    );
+                    return (
+                      <li key={cert.id}>
+                        {cert.credentialUrl ? (
+                          <a href={cert.credentialUrl} target="_blank" rel="noreferrer" className={styles.certLink}>
+                            {logo}
+                            {text}
+                          </a>
+                        ) : (
+                          <>
+                            {logo}
+                            {text}
+                          </>
+                        )}
+                      </li>
+                    );
+                  })}
                 </ul>
               </section>
             </div>

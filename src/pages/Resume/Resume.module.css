@@ -266,6 +266,19 @@
   object-fit: contain;
 }
 
+.certLink {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.certLink:hover,
+.certLink:focus-visible {
+  text-decoration: underline;
+}
+
 .certIssuer {
   font-weight: 400;
   color: var(--ink-muted);

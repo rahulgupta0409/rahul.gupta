@@ -80,6 +80,18 @@
   font-weight: 600;
   color: var(--text-secondary);
   white-space: nowrap;
+  text-decoration: none;
+}
+
+.certBadge[href] {
+  cursor: pointer;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.certBadge[href]:hover,
+.certBadge[href]:focus-visible {
+  border-color: var(--accent-solid);
+  transform: translateY(-1px);
 }
 
 .certIcon {

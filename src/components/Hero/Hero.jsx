@@ -41,7 +41,14 @@ export default function Hero() {
             </Reveal>
 
             {awsCert && (
-              <Reveal as="div" className={styles.certBadge} delay={0.18}>
+              <Reveal
+                as={awsCert.credentialUrl ? 'a' : 'div'}
+                href={awsCert.credentialUrl}
+                target={awsCert.credentialUrl ? '_blank' : undefined}
+                rel={awsCert.credentialUrl ? 'noopener noreferrer' : undefined}
+                className={styles.certBadge}
+                delay={0.18}
+              >
                 <img src={devAssociateLogo} alt="" className={styles.certIcon} />
                 <span>{awsCert.name}</span>
               </Reveal>

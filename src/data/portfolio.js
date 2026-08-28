@@ -224,7 +224,12 @@ export const education = [
 ];
 
 export const certifications = [
-  { id: 'aws-dva', name: 'AWS Certified Developer — Associate', issuer: 'Amazon Web Services' },
+  {
+    id: 'aws-dva',
+    name: 'AWS Certified Developer — Associate',
+    issuer: 'Amazon Web Services',
+    credentialUrl: 'https://www.credly.com/badges/b804438b-982e-452e-8327-2e05f0085de3/linked_in?t=s6j3kr',
+  },
   { id: 'java-se8', name: 'Infosys Certified Java SE8 Developer', issuer: 'Infosys' },
   { id: 'spring-depth', name: 'Spring: Framework in Depth', issuer: '' },
   { id: 'cpp-advanced', name: 'C++: Advanced Topics', issuer: '' },
