@@ -41,6 +41,67 @@ export function LinkedinIcon(props) {
   );
 }
 
+export function MediumIcon(props) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      aria-hidden="true"
+      fill="currentColor"
+      stroke="none"
+      {...props}
+    >
+      <circle cx="6.2" cy="12" r="4.6" />
+      <ellipse cx="14.8" cy="12" rx="3.1" ry="4.6" />
+      <ellipse cx="20.8" cy="12" rx="1.3" ry="4.6" />
+    </svg>
+  );
+}
+
+export function SubstackIcon(props) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      aria-hidden="true"
+      fill="currentColor"
+      stroke="none"
+      {...props}
+    >
+      <rect x="3.2" y="3.2" width="17.6" height="3.2" rx="0.6" />
+      <rect x="3.2" y="8.4" width="17.6" height="3.2" rx="0.6" />
+      <path d="M3.2 13.6h17.6v1.9L12 21.4l-8.8-5.9v-1.9Z" />
+    </svg>
+  );
+}
+
+export function LeetcodeIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" {...base} {...props}>
+      <path d="M9.4 5.5 3.8 11.1a1.3 1.3 0 0 0 0 1.8l5.6 5.6M14.6 5.5l5.6 5.6a1.3 1.3 0 0 1 0 1.8l-5.6 5.6M9 15h6" />
+    </svg>
+  );
+}
+
+export function GlobeIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" {...base} {...props}>
+      <circle cx="12" cy="12" r="9.2" />
+      <path d="M2.8 12h18.4M12 2.8c2.6 2.5 4 5.7 4 9.2s-1.4 6.7-4 9.2c-2.6-2.5-4-5.7-4-9.2s1.4-6.7 4-9.2Z" />
+    </svg>
+  );
+}
+
+export function PhoneIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" {...base} {...props}>
+      <path d="M5.3 3.8h3.1l1.5 4-2 1.7a12.6 12.6 0 0 0 6.6 6.6l1.7-2 4 1.5v3.1a1.6 1.6 0 0 1-1.7 1.6A16.9 16.9 0 0 1 3.7 5.5a1.6 1.6 0 0 1 1.6-1.7Z" />
+    </svg>
+  );
+}
+
 export function MailIcon(props) {
   return (
     <svg viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" {...base} {...props}>

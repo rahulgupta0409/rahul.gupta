@@ -3,11 +3,32 @@ import SectionHeading from '../ui/SectionHeading';
 import Reveal from '../ui/Reveal';
 import Button from '../ui/Button';
 import { useIsland } from '../../context/IslandContext';
-import { ArrowUpRightIcon, CheckIcon, CopyIcon, GithubIcon, LinkedinIcon, MailIcon } from '../icons/Icons';
+import {
+  ArrowUpRightIcon,
+  CheckIcon,
+  CopyIcon,
+  GithubIcon,
+  LinkedinIcon,
+  MailIcon,
+  GlobeIcon,
+  MediumIcon,
+  SubstackIcon,
+  LeetcodeIcon,
+  PhoneIcon,
+} from '../icons/Icons';
 import { contactChannels, profile } from '../../data/portfolio';
 import styles from './Contact.module.css';
 
-const iconMap = { mail: MailIcon, github: GithubIcon, linkedin: LinkedinIcon };
+const iconMap = {
+  mail: MailIcon,
+  phone: PhoneIcon,
+  github: GithubIcon,
+  linkedin: LinkedinIcon,
+  website: GlobeIcon,
+  medium: MediumIcon,
+  substack: SubstackIcon,
+  leetcode: LeetcodeIcon,
+};
 
 export default function Contact() {
   const { notify } = useIsland();
@@ -25,7 +46,7 @@ export default function Contact() {
     }
 
     setCopiedId(channel.id);
-    notify('Email copied to clipboard', 'check', 2000);
+    notify(`${channel.label} copied to clipboard`, 'check', 2000);
     window.setTimeout(() => {
       setCopiedId((current) => (current === channel.id ? null : current));
     }, 2000);

@@ -35,7 +35,7 @@ function SkillCard({ group, Icon, delay, state }) {
           <span className={styles.count}>{group.skills.length} skills</span>
         </div>
         <h3 className={styles.title}>{group.title}</h3>
-        <p className={styles.blurb}>{group.blurb}</p>
+        {/* <p className={styles.blurb}>{group.blurb}</p> */}
         <ul className={styles.tags} aria-label={`${group.title} skills`}>
           {visibleSkills.map((skill) => (
             <li key={skill} className={styles.tag}>

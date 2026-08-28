@@ -351,6 +351,49 @@
   background: var(--brand);
 }
 
+.project + .project {
+  margin-top: 1.4rem;
+}
+
+.projectHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.projectTitle {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.projectLinks {
+  flex-shrink: 0;
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.projectLinks a {
+  color: var(--brand);
+}
+
+.projectDescription {
+  margin-top: 0.35rem;
+  font-size: 0.87rem;
+  line-height: 1.6;
+  color: var(--ink-muted);
+}
+
+.projectTags {
+  margin-top: 0.35rem;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--ink-faint);
+}
+
 @media (max-width: 760px) {
   .toolbar,
   .sheet {

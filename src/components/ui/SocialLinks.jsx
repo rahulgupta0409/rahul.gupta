@@ -1,8 +1,16 @@
-import { GithubIcon, LinkedinIcon, MailIcon } from '../icons/Icons';
+import { GithubIcon, LinkedinIcon, MailIcon, GlobeIcon, MediumIcon, SubstackIcon, LeetcodeIcon } from '../icons/Icons';
 import { socials } from '../../data/portfolio';
 import styles from './SocialLinks.module.css';
 
-const iconMap = { github: GithubIcon, linkedin: LinkedinIcon, mail: MailIcon };
+const iconMap = {
+  github: GithubIcon,
+  linkedin: LinkedinIcon,
+  mail: MailIcon,
+  website: GlobeIcon,
+  medium: MediumIcon,
+  substack: SubstackIcon,
+  leetcode: LeetcodeIcon,
+};
 
 export default function SocialLinks({ className = '' }) {
   return (

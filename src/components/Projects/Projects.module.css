@@ -30,6 +30,15 @@
   border-color: rgb(var(--accent-rgb) / 0.45);
 }
 
+.logo {
+  height: 2.25rem;
+  width: auto;
+  max-width: 9rem;
+  object-fit: contain;
+  object-position: left center;
+  margin-bottom: 0.9rem;
+}
+
 .title {
   font-size: 1.2rem;
   font-weight: 700;
@@ -64,6 +73,36 @@
 
 .card:hover .tag {
   transform: translateY(-1px);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.1rem;
+  margin-top: 1.1rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--border);
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent-solid);
+  transition: color var(--dur-fast) var(--ease-out), gap var(--dur-fast) var(--ease-out);
+}
+
+.link:hover,
+.link:focus-visible {
+  gap: 0.45rem;
+  color: var(--text-primary);
+}
+
+.link svg {
+  width: 0.9rem;
+  height: 0.9rem;
 }
 
 @media (max-width: 900px) {

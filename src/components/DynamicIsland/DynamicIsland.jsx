@@ -12,13 +12,17 @@ import {
   CloseIcon,
   FolderIcon,
   GithubIcon,
+  GlobeIcon,
   HomeIcon,
   LayoutIcon,
+  LeetcodeIcon,
   LinkedinIcon,
   MailIcon,
+  MediumIcon,
   MoonIcon,
   QuoteIcon,
   SparkIcon,
+  SubstackIcon,
   SunIcon,
   UserIcon,
 } from '../icons/Icons';
@@ -35,7 +39,15 @@ const sectionIcons = {
 };
 
 const notifyIcons = { spark: SparkIcon, moon: MoonIcon, sun: SunIcon, check: CheckIcon };
-const socialIcons = { github: GithubIcon, linkedin: LinkedinIcon, mail: MailIcon };
+const socialIcons = {
+  github: GithubIcon,
+  linkedin: LinkedinIcon,
+  mail: MailIcon,
+  website: GlobeIcon,
+  medium: MediumIcon,
+  substack: SubstackIcon,
+  leetcode: LeetcodeIcon,
+};
 
 const springTransition = { type: 'spring', stiffness: 430, damping: 32, mass: 0.9 };
 

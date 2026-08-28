@@ -1,6 +1,9 @@
 import mohammadAkibPhoto from '../assets/images/Mohammad_Akib.jpeg';
 import dheerajKumarPhoto from '../assets/images/Dheeraj_Kumar.jpeg';
 import jatinTutejaPhoto from '../assets/images/Jatin_Kumar_Tuteja.jpeg';
+import jkubeLogo from '../assets/images/Jkube-logo.png';
+import notificationPlatformLogo from '../assets/images/notification-platform.png';
+import tpLimsLogo from '../assets/images/TP-lims.jpg';
 
 export const profile = {
   name: 'Rahul Gupta',
@@ -10,8 +13,14 @@ export const profile = {
   bio: "I build scalable backend systems in Java, Spring Boot, and Go — microservices, REST and GraphQL APIs, and the AWS infrastructure that keeps them running.",
   location: 'Brussels, Belgium',
   email: 'rahulgupta250220@gmail.com',
+  phone: '+32 467 88 48 09',
+  phoneHref: 'tel:+32467884809',
   availability: 'Open to opportunities', // TODO: confirm — you're currently at Infosys
   resumeUrl: '#', // TODO: link your PDF résumé
+  // Custom domain (rahul-gupta.dev) isn't pointed at the worker yet — swap
+  // websiteHref to the apex domain once DNS is set up; websiteLabel can stay.
+  websiteLabel: 'www.rahul-gupta.dev',
+  websiteHref: 'https://rahul-gupta.rahulguptaharsh081218.workers.dev',
 };
 
 export const socials = [
@@ -23,6 +32,15 @@ export const socials = [
     icon: 'linkedin',
   },
   { id: 'mail', label: 'Email', href: `mailto:${profile.email}`, icon: 'mail' },
+  { id: 'website', label: 'Website', href: profile.websiteHref, icon: 'website' },
+  { id: 'medium', label: 'Medium', href: 'https://medium.com/@rahulguptaharsh081218', icon: 'medium' },
+  {
+    id: 'substack',
+    label: 'Substack',
+    href: 'https://substack.com/@rahulgupta0409?r=1524yo&utm_medium=ios&utm_source=stories&shareImageVariant=blur',
+    icon: 'substack',
+  },
+  { id: 'leetcode', label: 'LeetCode', href: 'https://leetcode.com/u/rahul0409/', icon: 'leetcode' },
 ];
 
 export const navLinks = [
@@ -36,18 +54,48 @@ export const navLinks = [
 ];
 
 export const stats = [
-  { id: 'years', value: 4.5, suffix: '+', label: 'Years Experience' },
+  { id: 'years', value: 5, suffix: '+', label: 'Years Experience' },
   { id: 'tech', value: 20, suffix: '+', label: 'Technologies' },
-  { id: 'certs', value: 6, suffix: '', label: 'Certifications' },
+  { id: 'certs', value: 1725, suffix: '', label: 'Leetcode Rating' },
 ];
 
 export const aboutCopy =
-  "I'm a backend engineer with 4.5+ years building production systems in Java, Spring Boot, and Go — most recently architecting the Digital Key platform for Toyota Motors Europe, where I improved reliability by ~40% and cut infrastructure costs by ~60%. I work end-to-end across PostgreSQL, MongoDB, and AWS, with enough React to bridge into the frontend when a project needs it. Currently based in Brussels, Belgium.";
+  "I'm a backend engineer with 5+ years building production systems in Java, Spring Boot, and Go — most recently architecting the Digital Key platform for Toyota Motors Europe, where I improved reliability by ~40% and cut infrastructure costs by ~60%. I work end-to-end across PostgreSQL, MongoDB, and AWS, with enough React to bridge into the frontend when a project needs it. Currently based in Brussels, Belgium.";
 
-// TODO: replace with real work. Shape:
-// { id, title, description, tags: [], href, repo }
+// Shape: { id, title, description, tags: [], logo, links: [{ label, href }] }
 export const projects = [
-  // { id:"jkube", title:"Jkube", description:"", tags: [], href:"", repo:"" }
+  {
+    id: 'eclipse-jkube',
+    title: 'JKube (Eclipse) — Open Source Contribution',
+    description:
+      'Contributed to a cloud-native open-source project that simplifies containerization and deployment of Java applications to Kubernetes and OpenShift using Maven and Gradle.',
+    tags: ['Kubernetes', 'OpenShift', 'Java', 'Maven', 'Gradle', 'Open Source'],
+    logo: jkubeLogo,
+    links: [{ label: 'GitHub', href: 'https://github.com/eclipse-jkube/jkube' }],
+  },
+  {
+    id: 'notification-platform',
+    title: 'Notification Platform',
+    description:
+      'Building an open-source, scalable messaging platform supporting notifications, Pub/Sub, and topic-based queues with end-to-end encrypted messaging.',
+    tags: ['Pub/Sub', 'Notifications', 'End-to-End Encryption', 'Messaging Queues', 'Open Source'],
+    logo: notificationPlatformLogo,
+    links: [
+      { label: 'GitHub', href: 'https://github.com/rahulgupta0409/notification-platform' },
+    ],
+  },
+  {
+    id: 'pathology-management-system',
+    title: 'TP-LIMS - Pathology Management System',
+    description:
+      'Built an open-source Pathology Management System to streamline laboratory operations, including patient management, test processing, report generation, and efficient management of pathology workflows.',
+    tags: ['GraphQL', 'React', 'Healthcare', 'Open Source'],
+    logo: tpLimsLogo,
+    links: [
+      { label: 'Github', href: 'https://github.com/rahulgupta0409/tk-project-graphql-kickstart' },
+      { label: 'UI', href: 'https://github.com/rahulgupta0409/tp-lims-ui' },
+    ],
+  },
 ];
 
 export const skillGroups = [
@@ -117,7 +165,7 @@ export const experience = [
     role: 'Senior Software Engineer',
     company: 'First Group America',
     period: 'Apr 2022 — Aug 2023',
-    location: 'Bengaluru, India',
+    location: 'Bengaluru, India (Remote)',
     summary:
       'Designed and delivered Spring Boot and Go microservices, with ownership of data modelling and deployment.',
     points: [
@@ -181,7 +229,7 @@ export const certifications = [
   { id: 'spring-depth', name: 'Spring: Framework in Depth', issuer: '' },
   { id: 'cpp-advanced', name: 'C++: Advanced Topics', issuer: '' },
   { id: 'networking', name: 'The Bits and Bytes of Computer Networking', issuer: 'Google' },
-  { id: 'gtsf', name: 'Google Technical Support Fundamentals', issuer: 'Google' },
+  // { id: 'gtsf', name: 'Google Technical Support Fundamentals', issuer: 'Google' },
 ];
 
 // TODO: swap every bracketed field for the real person's name/quote before
@@ -239,6 +287,14 @@ export const contactChannels = [
     action: 'copy',
   },
   {
+    id: 'phone',
+    label: 'Phone',
+    value: profile.phone,
+    href: profile.phoneHref,
+    icon: 'phone',
+    action: 'copy',
+  },
+  {
     id: 'github',
     label: 'GitHub',
     value: '@rahulgupta0409', // TODO: your actual handle
@@ -252,6 +308,38 @@ export const contactChannels = [
     value: 'in/rahul-gupta-694a60194',
     href: 'https://www.linkedin.com/in/rahul-gupta-694a60194/',
     icon: 'linkedin',
+    action: 'link',
+  },
+  {
+    id: 'website',
+    label: 'Website',
+    value: profile.websiteLabel,
+    href: profile.websiteHref,
+    icon: 'website',
+    action: 'link',
+  },
+  {
+    id: 'medium',
+    label: 'Medium',
+    value: '@rahulguptaharsh081218',
+    href: 'https://medium.com/@rahulguptaharsh081218',
+    icon: 'medium',
+    action: 'link',
+  },
+  {
+    id: 'substack',
+    label: 'Substack',
+    value: '@rahulgupta0409',
+    href: 'https://substack.com/@rahulgupta0409?r=1524yo&utm_medium=ios&utm_source=stories&shareImageVariant=blur',
+    icon: 'substack',
+    action: 'link',
+  },
+  {
+    id: 'leetcode',
+    label: 'LeetCode',
+    value: 'u/rahul0409',
+    href: 'https://leetcode.com/u/rahul0409/',
+    icon: 'leetcode',
     action: 'link',
   },
 ];

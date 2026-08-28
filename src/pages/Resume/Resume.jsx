@@ -2,15 +2,33 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
-import { profile, socials, skillGroups, education, certifications, experience, aboutCopy } from '../../data/portfolio';
-import { ArrowRightIcon, DownloadIcon, MailIcon, MapPinIcon, GithubIcon, LinkedinIcon } from '../../components/icons/Icons';
+import { profile, socials, skillGroups, education, certifications, experience, aboutCopy, projects } from '../../data/portfolio';
+import {
+  ArrowRightIcon,
+  DownloadIcon,
+  MailIcon,
+  MapPinIcon,
+  GithubIcon,
+  LinkedinIcon,
+  GlobeIcon,
+  MediumIcon,
+  SubstackIcon,
+  LeetcodeIcon,
+  PhoneIcon,
+} from '../../components/icons/Icons';
 import resumePhoto from '../../assets/images/resume-pic.png';
 import styles from './Resume.module.css';
 
 const githubUrl = socials.find((s) => s.id === 'github')?.href;
 const linkedinUrl = socials.find((s) => s.id === 'linkedin')?.href;
+const mediumUrl = socials.find((s) => s.id === 'medium')?.href;
+const substackUrl = socials.find((s) => s.id === 'substack')?.href;
+const leetcodeUrl = socials.find((s) => s.id === 'leetcode')?.href;
 const linkedinHandle = linkedinUrl?.replace(/^https?:\/\/(www\.)?linkedin\.com\//, '').replace(/\/$/, '');
 const githubHandle = githubUrl?.replace(/^https?:\/\/(www\.)?github\.com\//, '').replace(/\/$/, '');
+const mediumHandle = mediumUrl?.replace(/^https?:\/\/(www\.)?medium\.com\//, '');
+const substackHandle = substackUrl?.replace(/^https?:\/\/(www\.)?substack\.com\//, '').replace(/\?.*$/, '');
+const leetcodeHandle = leetcodeUrl?.replace(/^https?:\/\/(www\.)?leetcode\.com\//, '').replace(/\/$/, '');
 
 // Derived straight from the same `experience` used on the portfolio itself —
 // full bullet lists, so a fresh edit there (new job, reworded point, new
@@ -49,6 +67,7 @@ export default function Resume() {
     setIsDownloading(true);
     try {
       const scale = 2; // render at 2x for crisp text/edges in the PDF
+      const sheetRect = sheet.getBoundingClientRect();
       const canvas = await html2canvas(sheet, {
         scale,
         useCORS: true,
@@ -62,7 +81,6 @@ export default function Resume() {
       // on-screen object-fit:cover circle exactly.
       const photoEl = photoRef.current;
       if (photoEl) {
-        const sheetRect = sheet.getBoundingClientRect();
         const photoRect = photoEl.getBoundingClientRect();
         const destX = (photoRect.left - sheetRect.left) * scale;
         const destY = (photoRect.top - sheetRect.top) * scale;
@@ -100,6 +118,18 @@ export default function Resume() {
       const pageHeight = canvas.height / scale;
       const pdf = new jsPDF({ unit: 'px', format: [pageWidth, pageHeight] });
       pdf.addImage(imgData, 'JPEG', 0, 0, pageWidth, pageHeight);
+
+      // The image above is a flat raster of the sheet, so none of the on-
+      // screen <a> tags survive into it — overlay invisible clickable
+      // regions at each link's original position so contact/project links
+      // still work once the file is a PDF.
+      sheet.querySelectorAll('a[href]').forEach((anchor) => {
+        const rect = anchor.getBoundingClientRect();
+        pdf.link(rect.left - sheetRect.left, rect.top - sheetRect.top, rect.width, rect.height, {
+          url: anchor.href,
+        });
+      });
+
       pdf.save(`${profile.name.replace(/\s+/g, '_')}_Resume.pdf`);
     } finally {
       setIsDownloading(false);
@@ -151,6 +181,12 @@ export default function Resume() {
                     <MapPinIcon aria-hidden="true" />
                     <span>{profile.location}</span>
                   </li>
+                  {profile.phoneHref && (
+                    <li>
+                      <PhoneIcon aria-hidden="true" />
+                      <a href={profile.phoneHref}>{profile.phone}</a>
+                    </li>
+                  )}
                   <li>
                     <MailIcon aria-hidden="true" />
                     <a href={`mailto:${profile.email}`}>{profile.email}</a>
@@ -168,6 +204,38 @@ export default function Resume() {
                       <GithubIcon aria-hidden="true" />
                       <a href={githubUrl} target="_blank" rel="noreferrer">
                         github.com/{githubHandle}
+                      </a>
+                    </li>
+                  )}
+                  {profile.websiteHref && (
+                    <li>
+                      <GlobeIcon aria-hidden="true" />
+                      <a href={profile.websiteHref} target="_blank" rel="noreferrer">
+                        {profile.websiteLabel}
+                      </a>
+                    </li>
+                  )}
+                  {mediumUrl && (
+                    <li>
+                      <MediumIcon aria-hidden="true" />
+                      <a href={mediumUrl} target="_blank" rel="noreferrer">
+                        medium.com/{mediumHandle}
+                      </a>
+                    </li>
+                  )}
+                  {substackUrl && (
+                    <li>
+                      <SubstackIcon aria-hidden="true" />
+                      <a href={substackUrl} target="_blank" rel="noreferrer">
+                        substack.com/{substackHandle}
+                      </a>
+                    </li>
+                  )}
+                  {leetcodeUrl && (
+                    <li>
+                      <LeetcodeIcon aria-hidden="true" />
+                      <a href={leetcodeUrl} target="_blank" rel="noreferrer">
+                        leetcode.com/{leetcodeHandle}
                       </a>
                     </li>
                   )}
@@ -236,6 +304,35 @@ export default function Resume() {
                   </div>
                 ))}
               </section>
+
+              {projects.length > 0 && (
+                <section className={styles.block}>
+                  <h2 className={styles.blockTitle}>Projects</h2>
+                  {projects.map((project) => (
+                    <div key={project.id} className={styles.project}>
+                      <div className={styles.projectHead}>
+                        <p className={styles.projectTitle}>{project.title}</p>
+                        {project.links?.length > 0 && (
+                          <p className={styles.projectLinks}>
+                            {project.links.map((link, index) => (
+                              <span key={link.href}>
+                                {index > 0 && ' · '}
+                                <a href={link.href} target="_blank" rel="noreferrer">
+                                  {link.label}
+                                </a>
+                              </span>
+                            ))}
+                          </p>
+                        )}
+                      </div>
+                      <p className={styles.projectDescription}>{project.description}</p>
+                      {project.tags?.length > 0 && (
+                        <p className={styles.projectTags}>{project.tags.join(', ')}</p>
+                      )}
+                    </div>
+                  ))}
+                </section>
+              )}
             </div>
           </div>
         </div>
