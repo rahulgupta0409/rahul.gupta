@@ -98,7 +98,7 @@ export const experience = [
     id: 'infosys-analyst',
     role: 'Technology Analyst',
     company: 'Toyota Motors Europe',
-    period: 'Apr 2025 — Present',
+    period: 'Aug 2023 — Present',
     location: 'Brussels, Belgium',
     summary:
       'Building and running backend services for a client engagement in Belgium.',
@@ -116,7 +116,7 @@ export const experience = [
     id: 'infosys-sse',
     role: 'Senior Software Engineer',
     company: 'First Group America',
-    period: 'Apr 2024 — Apr 2025',
+    period: 'Apr 2022 — Aug 2023',
     location: 'Bengaluru, India',
     summary:
       'Designed and delivered Spring Boot and Go microservices, with ownership of data modelling and deployment.',
