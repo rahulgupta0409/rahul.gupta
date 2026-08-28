@@ -1,8 +1,9 @@
+import { Link } from 'react-router-dom';
 import Profile from '../Profile/Profile';
 import Reveal from '../ui/Reveal';
 import Button from '../ui/Button';
 import SocialLinks from '../ui/SocialLinks';
-import { ArrowRightIcon, ChevronDownIcon, MailIcon, CertBadgeIcon } from '../icons/Icons';
+import { DownloadIcon, ChevronDownIcon, MailIcon, CertBadgeIcon } from '../icons/Icons';
 import { profile, certifications } from '../../data/portfolio';
 import { scrollToSection } from '../../utils/scroll';
 import { useTypewriter } from '../../hooks/useTypewriter';
@@ -52,12 +53,15 @@ export default function Hero() {
 
           <Reveal className={styles.ctas} delay={0.24}>
             <Button
+              as={Link}
+              to="/resume"
+              target="_blank"
+              rel="noopener noreferrer"
               variant="primary"
               size="lg"
-              icon={<ArrowRightIcon />}
-              onClick={() => scrollToSection('projects')}
+              icon={<DownloadIcon />}
             >
-              View My Work
+              Resume
             </Button>
             <Button
               as="a"

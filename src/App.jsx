@@ -1,3 +1,5 @@
+import { lazy, Suspense } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
 import { IslandProvider } from './context/IslandContext';
 import Navbar from './components/Navbar/Navbar';
@@ -11,28 +13,51 @@ import Testimonials from './components/Testimonials/Testimonials';
 import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
 
+// Pulls in html2canvas + jsPDF (for the PDF download), which only the
+// resume page needs — lazy-loaded so regular portfolio visitors don't pay
+// for that weight in their initial bundle.
+const Resume = lazy(() => import('./pages/Resume/Resume'));
+
+function Portfolio() {
+  return (
+    <>
+      <a href="#main-content" className="skip-link">
+        Skip to content
+      </a>
+
+      <DynamicIsland />
+      <Navbar />
+
+      <main id="main-content" tabIndex={-1}>
+        <Hero />
+        <About />
+        <Projects />
+        <Skills />
+        <Experience />
+        <Testimonials />
+        <Contact />
+      </main>
+
+      <Footer />
+    </>
+  );
+}
+
 export default function App() {
   return (
     <ThemeProvider>
       <IslandProvider>
-        <a href="#main-content" className="skip-link">
-          Skip to content
-        </a>
-
-        <DynamicIsland />
-        <Navbar />
-
-        <main id="main-content" tabIndex={-1}>
-          <Hero />
-          <About />
-          <Projects />
-          <Skills />
-          <Experience />
-          <Testimonials />
-          <Contact />
-        </main>
-
-        <Footer />
+        <Routes>
+          <Route path="/" element={<Portfolio />} />
+          <Route
+            path="/resume"
+            element={
+              <Suspense fallback={null}>
+                <Resume />
+              </Suspense>
+            }
+          />
+        </Routes>
       </IslandProvider>
     </ThemeProvider>
   );

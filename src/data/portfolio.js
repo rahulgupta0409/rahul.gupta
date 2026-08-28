@@ -5,7 +5,7 @@ import jatinTutejaPhoto from '../assets/images/Jatin_Kumar_Tuteja.jpeg';
 export const profile = {
   name: 'Rahul Gupta',
   initial: 'R',
-  role: 'Backend Developer',
+  role: 'Senior Software Engineer',
   greeting: "Hi, I'm",
   bio: "I build scalable backend systems in Java, Spring Boot, and Go — microservices, REST and GraphQL APIs, and the AWS infrastructure that keeps them running.",
   location: 'Brussels, Belgium',
